@@ -5,6 +5,7 @@
     # Editors and multiplexers
     neovim
     tmux
+	git
 
     # Shell utilities
     fzf

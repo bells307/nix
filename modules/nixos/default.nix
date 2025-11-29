@@ -2,13 +2,8 @@
 
 {
   imports = [
-    ./hardware.nix
     ./packages.nix
   ];
-
-  # Boot loader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -24,17 +19,6 @@
     home = "/home/bells";
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
-    # Add SSH key when deploying:
-    # openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAA..." ];
-  };
-
-  # Enable SSH for headless server
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
   };
 
   # System state version
