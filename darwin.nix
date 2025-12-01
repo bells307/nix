@@ -40,6 +40,10 @@
     curl
     taplo
     lazygit
+    rustc
+    rustup
+    cargo
+    stylua
   ];
 
   # Fonts
