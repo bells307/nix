@@ -47,6 +47,7 @@
     nixfmt
     curl
     taplo
+    lazygit
   ];
 
   # Fonts
