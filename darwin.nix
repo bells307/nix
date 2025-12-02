@@ -80,6 +80,7 @@
     ];
     masApps = {
       "Pepper VPN" = 6739161385;
+      "WireGuard" = 1451685025;
     };
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
