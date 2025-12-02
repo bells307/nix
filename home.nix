@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   home.stateVersion = "24.11";
@@ -16,6 +16,7 @@
     extraPackages = with pkgs; [
       stylua
       rust-analyzer
+      nil
     ];
   };
 
