@@ -11,6 +11,12 @@
   system.configurationRevision = self.rev or self.dirtyRev or null;
   system.primaryUser = "bells";
 
+  # Time zone
+  time.timeZone = "Europe/Moscow";
+
+  # Security
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   # User definition
   users.users.bells = {
     name = "bells";
@@ -35,7 +41,8 @@
     vscode
     orbstack
     google-chrome
-    # raycast
+    # raycast needs vpn to download
+    raycast
     utm
     chatgpt
 
@@ -68,7 +75,7 @@
     casks = [
     ];
     masApps = {
-      # "Yoink" = 457622435;
+      "Pepper VPN" = 6739161385;
     };
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
