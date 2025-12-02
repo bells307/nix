@@ -21,6 +21,7 @@
   users.users.bells = {
     name = "bells";
     home = "/Users/bells";
+    shell = pkgs.zsh;
   };
 
   # Nix configuration
@@ -88,18 +89,14 @@
   ];
 
   system.defaults = {
-    dock = {
-      # autohide = true;
-      # persistent-apps = [
-      # ];
-    };
+    dock.autohide = true;
 
     finder.FXPreferredViewStyle = "clmv";
     loginwindow.GuestEnabled = false;
 
     NSGlobalDomain = {
       # larger value => slower repeat
-      KeyRepeat = 2;
+      KeyRepeat = 1;
       # larger value => longer delay
       InitialKeyRepeat = 12;
       AppleICUForce24HourTime = true;
@@ -127,6 +124,14 @@
       };
     };
   };
+
+  # Install Rosetta 2 for x86_64 compatibility on Apple Silicon
+  system.activationScripts.rosetta = ''
+    if ! /usr/bin/pgrep -q oahd; then
+      echo "Installing Rosetta 2..." >&2
+      /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+    fi
+  '';
 
   # Make apps visible to Spotlight
   system.activationScripts.applications.text = let
