@@ -14,8 +14,11 @@
   # Time zone
   time.timeZone = "Europe/Moscow";
 
-  # Security
-  security.pam.services.sudo_local.touchIdAuth = true;
+  # Security - Touch ID for sudo (including tmux support)
+  security.pam.services.sudo_local = {
+    touchIdAuth = true;  # Enable Touch ID authentication
+    reattach = true;     # Fix Touch ID not working in tmux/screen
+  };
 
   # User definition
   users.users.bells = {
@@ -60,8 +63,8 @@
     taplo
     lazygit
     rustc
-    rustup
     cargo
+    rust-analyzer
     stylua
     yazi
     somafm-cli
