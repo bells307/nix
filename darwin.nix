@@ -28,8 +28,18 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
+    # GUI Applications
     alacritty
     obsidian
+    telegram-desktop
+    vscode
+    orbstack
+    google-chrome
+    raycast
+    utm
+    chatgpt
+
+    # CLI Tools
     mkalias
     neovim
     tmux
@@ -45,6 +55,7 @@
     rustup
     cargo
     stylua
+    wireguard-tools
   ];
 
   # Fonts
@@ -56,4 +67,24 @@
   system.defaults.NSGlobalDomain.KeyRepeat = 1;
   # larger value => longer delay
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 12;
+
+  # Make apps visible to Spotlight
+  system.activationScripts.applications.text = let
+    env = pkgs.buildEnv {
+      name = "system-applications";
+      paths = config.environment.systemPackages;
+      pathsToLink = [ "/Applications" ];
+    };
+  in
+    pkgs.lib.mkForce ''
+      echo "setting up /Applications..." >&2
+      rm -rf /Applications/Nix\ Apps
+      mkdir -p /Applications/Nix\ Apps
+      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+      while read -r src; do
+        app_name=$(basename "$src")
+        echo "copying $src" >&2
+        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+      done
+    '';
 }
