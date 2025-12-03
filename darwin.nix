@@ -1,4 +1,4 @@
-{ pkgs, lib, config, self, ... }:
+{ pkgs, config, self, ... }:
 
 {
   # Host-specific configuration
@@ -108,6 +108,13 @@
       # larger value => longer delay
       InitialKeyRepeat = 12;
       AppleICUForce24HourTime = true;
+
+      # Disable automatic text substitution
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = false;
+      NSAutomaticSpellingCorrectionEnabled = false;
     };
 
     # Disable macOS Spotlight keyboard shortcuts
