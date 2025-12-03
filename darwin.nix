@@ -81,6 +81,7 @@
     ];
     casks = [
       "virtualbuddy"
+      "steam"
     ];
     masApps = {
       "Pepper VPN" = 6739161385;
