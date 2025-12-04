@@ -82,6 +82,7 @@
     casks = [
       "virtualbuddy"
       "steam"
+      "scroll-reverser"
     ];
     masApps = {
       "Pepper VPN" = 6739161385;
